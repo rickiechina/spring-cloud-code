@@ -30,7 +30,7 @@ public class TestController {
 	 */
 	@GetMapping("/test/head")
 	public String testGatewayHead(HttpServletRequest request, HttpServletResponse response){
-		String head=request.getHeader("X-Request-Acme");
+		String head=request.getHeader("x-request-user");
 		return "return head info:"+head;
 	}
 

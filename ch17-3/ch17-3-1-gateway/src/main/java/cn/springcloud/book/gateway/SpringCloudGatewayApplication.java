@@ -13,10 +13,11 @@ public class SpringCloudGatewayApplication {
 	public RouteLocator testRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route("add_request_header_route", r ->
-						r.path("/test").filters(f -> f.addRequestHeader("X-Request-Acme", "ValueB"))
+						r.path("/test").filters(f -> f.addRequestHeader("x-request-user", "Rickie Lee"))
 								.uri("http://localhost:8071/test/head"))
 				.build();
 	}
+
 	public static void main(String[] args) {
 		SpringApplication.run(SpringCloudGatewayApplication.class, args);
 	}

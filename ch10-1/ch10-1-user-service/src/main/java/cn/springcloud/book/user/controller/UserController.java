@@ -3,6 +3,8 @@ package cn.springcloud.book.user.controller;
 
 import java.util.List;
 
+import cn.springcloud.book.common.context.UserContextHolder;
+import cn.springcloud.book.common.vo.User;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RestController;
@@ -33,7 +35,10 @@ public class UserController {
      */
     @GetMapping("/getContextUserId")
     public String getContextUserId(){
-        return userService.getContextUserId();
+        String tmp = userService.getContextUserId();
+        System.out.println(tmp);
+
+        return tmp;
     }
     
     /**
@@ -43,5 +48,22 @@ public class UserController {
     @GetMapping("/getProviderData")
     public List<String> getProviderData(){
         return userService.getProviderData();
+    }
+
+    @GetMapping("/getProviderData2")
+    public List<String> getProviderData2() {
+        return userService.getProviderData2();
+    }
+
+    @GetMapping("/getContextUserId2")
+    public String getContextUserId2() {
+
+        System.out.println("==== INPUT: " + UserContextHolder.currentUser().getUserId());
+
+        // result
+        String tmp = userService.getContextUserId2(UserContextHolder.currentUser());
+        System.out.println(tmp);
+
+        return tmp;
     }
 }

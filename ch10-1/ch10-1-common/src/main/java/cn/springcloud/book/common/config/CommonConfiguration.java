@@ -55,7 +55,7 @@ public class CommonConfiguration extends WebMvcConfigurerAdapter{
         return restTemplate;
     }
     
-    @Bean
+    //@Bean
 	public SpringCloudHystrixConcurrencyStrategy springCloudHystrixConcurrencyStrategy() {
 		return new SpringCloudHystrixConcurrencyStrategy();
 	}

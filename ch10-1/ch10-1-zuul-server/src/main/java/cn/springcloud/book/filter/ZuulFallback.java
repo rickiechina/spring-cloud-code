@@ -11,7 +11,7 @@ import org.springframework.http.MediaType;
 import org.springframework.http.client.ClientHttpResponse;
 import org.springframework.stereotype.Component;
 
-@Component
+//@Component
 public class ZuulFallback implements FallbackProvider{
 
 	@Override

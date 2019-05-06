@@ -1,6 +1,7 @@
 package cn.springcloud.book.dataservice.controller;
 
 import cn.springcloud.book.common.context.UserContextHolder;
+import cn.springcloud.book.common.vo.User;
 import cn.springcloud.book.dataservice.config.DataConfig;
 
 import java.util.ArrayList;
@@ -8,10 +9,7 @@ import java.util.List;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
-import org.springframework.web.bind.annotation.GetMapping;
-import org.springframework.web.bind.annotation.RequestMapping;
-import org.springframework.web.bind.annotation.RequestMethod;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 /**
  * @author: zhudeming
@@ -24,7 +22,19 @@ public class DataController {
 	
     @GetMapping("/getContextUserId")
     public String getContextUserId(){
-        return UserContextHolder.currentUser().getUserId();
+        if(UserContextHolder.currentUser() == null) {
+            System.out.println("current user is null. #####");
+            return "==current user is null. ==";
+        }
+        String userId = UserContextHolder.currentUser().getUserId();
+        return userId;
+    }
+
+    @RequestMapping(value = "/getContextUserId2", method = RequestMethod.POST)
+    public String getContextUserId2(@RequestBody User user) {
+        String userId = user == null ? "NULL":user.getUserId();
+        System.out.println("getContextUserId2 ======"  + userId + " =========");
+        return userId;
     }
     
     @GetMapping("/getDefaultUser")

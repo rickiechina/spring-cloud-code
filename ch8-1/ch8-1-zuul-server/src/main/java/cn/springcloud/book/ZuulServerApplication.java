@@ -32,7 +32,7 @@ public class ZuulServerApplication {
     /**
      * Groovy加载方法配置，20秒自动刷新
      */
-    @Component
+    //@Component
     public static class GroovyRunner implements CommandLineRunner {
         @Override
         public void run(String... args) throws Exception {
@@ -47,20 +47,20 @@ public class ZuulServerApplication {
         }
     }
     
+    @Bean
+    public FirstPreFilter firstPreFilter(){
+    	return new FirstPreFilter();
+    }
+    
 //    @Bean
-//    public FirstPreFilter firstPreFilter(){
-//    	return new FirstPreFilter();
+//    public SecondPreFilter secondPreFilter(){
+//    	return new SecondPreFilter();
 //    }
-    
-    @Bean
-    public SecondPreFilter secondPreFilter(){
-    	return new SecondPreFilter();
-    }
-    
-    @Bean
-    public ThirdPreFilter thirdPreFilter(){
-    	return new ThirdPreFilter();
-    }
+//
+//    @Bean
+//    public ThirdPreFilter thirdPreFilter(){
+//    	return new ThirdPreFilter();
+//    }
     
 //    @Bean
 //    public ErrorFilter errorFilter(){

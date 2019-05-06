@@ -16,7 +16,7 @@ import cn.springcloud.book.config.TestConfiguration;
 
 @SpringBootApplication
 @EnableDiscoveryClient
-@RibbonClient(name = "client-a", configuration = TestConfiguration.class)
+@RibbonClient(name = "client-b", configuration = TestConfiguration.class)
 //@RibbonClients(value = {
 //		@RibbonClient(name = "client-a", configuration = TestConfiguration.class),
 //		@RibbonClient(name = "client-b", configuration = TestConfiguration.class)

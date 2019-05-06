@@ -10,6 +10,7 @@ public class UserServiceFallback implements IUserService{
 	  * @param username
 	  * @return
 	  */
+	@Override
 	public String getUser(String username){
 		return "The user does not exist in this system, please confirm username";
 	}

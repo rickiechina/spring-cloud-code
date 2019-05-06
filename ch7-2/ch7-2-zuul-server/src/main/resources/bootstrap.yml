@@ -11,6 +11,6 @@ eureka:
     prefer-ip-address: true
 zuul:
   routes:
-    client-a:
+    abcdef:
       path: /client/**
       serviceId: client-a

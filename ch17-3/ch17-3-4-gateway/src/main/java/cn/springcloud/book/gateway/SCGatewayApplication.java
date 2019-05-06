@@ -8,14 +8,12 @@ import org.springframework.context.annotation.Bean;
 
 @SpringBootApplication
 public class SCGatewayApplication {
-
-
 	@Bean
 	public RouteLocator testRouteLocator(RouteLocatorBuilder builder) {
 		return builder.routes()
 				.route("add_request_header_route", r ->
-						r.path("/test").filters(f -> f.addResponseHeader("X-Response-Foo", "Bar"))
-								.uri("http://www.baidu.com"))
+						r.path("/test").filters(f -> f.addResponseHeader("x-response-user", "Rickie Lee"))
+								.uri("http://localhost:8071/test/head"))
 				.build();
 	}
 

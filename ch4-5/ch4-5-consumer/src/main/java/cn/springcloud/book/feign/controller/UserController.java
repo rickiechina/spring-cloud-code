@@ -24,6 +24,7 @@ public class UserController {
 	 */
 	@RequestMapping(value = "/add", method = RequestMethod.POST)
 	public String addUser( @RequestBody @ApiParam(name="用户",value="传入json格式",required=true) User user){
+		System.out.println("called addUser method...............");
 		return userFeignService.addUser(user);
 	}
 

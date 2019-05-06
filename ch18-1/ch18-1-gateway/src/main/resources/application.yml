@@ -6,7 +6,7 @@ spring:
       discovery:
         locator:
           enabled: true
-          lowerCaseServiceId: true
+          #lowerCaseServiceId: true
 
 server:
   port: 9000  #网关服务监听 9000 端口
@@ -18,3 +18,12 @@ eureka:
 logging:
   level: #调整相关包的 log 级别，以便排查问题
     org.springframework.cloud.gateway: debug
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: '*'
+security:
+  enabled: false
+

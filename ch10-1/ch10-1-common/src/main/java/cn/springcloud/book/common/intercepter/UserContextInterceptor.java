@@ -21,8 +21,11 @@ public class UserContextInterceptor implements HandlerInterceptor {
 		User user = new User(HttpConvertUtil.httpRequestToMap(request));
 		if(StringUtils.isEmpty(user.getUserId()) && StringUtils.isEmpty(user.getUserName())) {
 			log.error("the user is null, please access from gateway or check user info");
-			return false;
+			//return false;
+			return true;
 		}
+
+		System.out.println("=========== UserContextInterceptor ====== " + user.getUserId());
 		UserContextHolder.set(user);
 		return true;
 	}
@@ -38,7 +41,4 @@ public class UserContextInterceptor implements HandlerInterceptor {
 			throws Exception {
 		UserContextHolder.shutdown();
 	}
-	
-	
-	
 }

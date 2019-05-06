@@ -15,17 +15,17 @@ import reactor.core.publisher.Mono;
 public class CustomGatewayFilter implements GatewayFilter, Ordered {
 
     private static final Log log = LogFactory.getLog(GatewayFilter.class);
-    private static final String COUNT_Start_TIME = "countStartTime";
+    private static final String REQUEST_START_TIME = "requestStartTime";
 
     @Override
     public Mono<Void> filter(ServerWebExchange exchange, GatewayFilterChain chain) {
-        exchange.getAttributes().put(COUNT_Start_TIME, System.currentTimeMillis());
+        exchange.getAttributes().put(REQUEST_START_TIME, System.currentTimeMillis());
         return chain.filter(exchange).then(
                 Mono.fromRunnable(() -> {
-                    Long startTime = exchange.getAttribute(COUNT_Start_TIME);
-                    Long endTime=(System.currentTimeMillis() - startTime);
+                    Long startTime = exchange.getAttribute(REQUEST_START_TIME);
                     if (startTime != null) {
-                        log.info(exchange.getRequest().getURI().getRawPath() + ": " + endTime + "ms");
+                        log.info(exchange.getRequest().getURI().getRawPath() + ": "
+                                + (System.currentTimeMillis() - startTime) + "ms");
                     }
                 })
         );

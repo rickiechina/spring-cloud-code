@@ -4,6 +4,8 @@ import java.util.Enumeration;
 
 import javax.servlet.http.HttpServletRequest;
 
+import cn.springcloud.book.common.context.UserContextHolder;
+import cn.springcloud.book.common.vo.User;
 import org.springframework.web.context.request.RequestContextHolder;
 import org.springframework.web.context.request.ServletRequestAttributes;
 
@@ -18,9 +20,15 @@ public class FeignUserContextInterceptor implements RequestInterceptor {
 
 	@Override
 	public void apply(RequestTemplate template) {
-//		User user = UserContextHolder.currentUser();
+		User user = UserContextHolder.currentUser();
+        System.out.println(user == null? "### user为空！": "### user不为空！");
+
 		ServletRequestAttributes attributes = (ServletRequestAttributes) RequestContextHolder
                 .getRequestAttributes();
+		if(attributes == null) {
+            System.out.println("=== attributes is null. ===");
+            return;
+        }
 		HttpServletRequest request = attributes.getRequest();
         Enumeration<String> headerNames = request.getHeaderNames();
         if (headerNames != null) {
@@ -30,7 +38,5 @@ public class FeignUserContextInterceptor implements RequestInterceptor {
                 template.header(name, values);
             }
         }
-
 	}
-
 }
